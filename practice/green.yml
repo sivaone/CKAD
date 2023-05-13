@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: green
+  name: green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: green
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: green
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+status: {}
